@@ -55,6 +55,7 @@
   },
   "homepage": "https://github.com/IgorMCesar/react-node-boilerplate#readme",
   "dependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1"
   }
 }

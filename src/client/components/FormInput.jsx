@@ -1,13 +1,13 @@
 import React from 'react';
 
-export const FormularioInput = ({ label, tipo = 'text', id, placeholder, onChange }) => {
+export const FormInput = ({ label, type = 'text', id, placeholder, onChange }) => {
   return (
     <div className="mb-3">
       <label htmlFor={id} className="form-label">
         {label}
       </label>
       <input
-        type={tipo}
+        type={type}
         className="form-control"
         name={id}
         id={id}

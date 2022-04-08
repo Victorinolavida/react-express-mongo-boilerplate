@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import usuarioContexto from '../state/state';
+import userContext from '../state/state';
 
 export const Home = () => {
-  const { user, setUser } = useContext(usuarioContexto);
-
-  const logout = () => {
-    setUser({ nombre: '', uid: '', islogged: false });
+  const { user, logout } = useContext(userContext);
+  const { nombre, islogged } = user;
+  console.log(user, 'usuario-home');
+  const logoutHandler = () => {
+    // setUser({ nombre: '', uid: '', islogged: false });
     localStorage.clear('token');
+    logout(islogged);
+    // console.log(user);
   };
 
   return (
@@ -16,10 +19,10 @@ export const Home = () => {
         <h1 className="text-center mt-4">App test </h1>
         <div className="d-flex justify-content-between d-print-inline-block align-middle mt-5">
           <h4 className="text-center">
-            Bienvenido: <span className="text-primary"> {user.nombre} </span>
+            Bienvenido: <span className="text-primary"> {nombre} </span>
           </h4>
 
-          <button onClick={logout} className="logout btn btn-danger">
+          <button onClick={logoutHandler} className="logout btn btn-danger">
             Logout
           </button>
         </div>
@@ -31,7 +34,7 @@ export const Home = () => {
         <br />
       </div>
 
-      {!user.islogged ? <Redirect to="/login" /> : <Redirect to="/" />}
+      {!islogged ? <Redirect to="/login" /> : <Redirect to="/" />}
     </>
   );
 };

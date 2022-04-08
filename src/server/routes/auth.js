@@ -30,8 +30,8 @@ router.post(
 router.get('/renew', validarJWT, async (req, res) => {
   const nombre = req.nombre;
   const uid = req.uid;
-  const token = await generarJWT(uid);
-  res.json({ token, usuario: { uid, nombre }, ok: true });
+  const token = await generarJWT(uid, nombre);
+  res.json({ token, ok: true });
 });
 
 export default router;

@@ -27,7 +27,7 @@ export const validarJWT = async (req = request, res = response, next) => {
     next();
   } catch (error) {
     res.status(401).json({
-      msg: 'No se puedo generar el jwt',
+      msg: 'No se pudo generar el jwt',
       ok: false
     });
   }

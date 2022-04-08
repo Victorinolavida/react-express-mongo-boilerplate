@@ -5,6 +5,12 @@ import { generarJWT } from '../helpers/generarJWT';
 export const registro = async (req, res) => {
   const { nombre, email, password1, password2 } = req.body;
 
+  if (nombre.length < 3) {
+    return res.status(401).json({
+      msg: `El nombre debe ser mayor a tres caracteres`
+    });
+  }
+
   const userInDb = await Usuario.findOne({ email });
 
   if (userInDb) {
@@ -34,8 +40,8 @@ export const registro = async (req, res) => {
   });
 
   await usuario.save();
-  const token = await generarJWT(usuario._id);
-  return res.json({ usuario, token });
+  const token = await generarJWT(usuario._id, usuario.nombre);
+  return res.json({ token });
 };
 
 export const login = async (req, res) => {
@@ -56,7 +62,7 @@ export const login = async (req, res) => {
       msg: 'Email o password no son correctos'
     });
   }
-  const token = await generarJWT(usuario._id);
+  const token = await generarJWT(usuario._id, usuario.nombre);
 
-  res.json({ usuario, token });
+  res.json({ token });
 };
