@@ -1,19 +1,16 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import {authContext} from '../state/state';
+import userContext from '../state/state';
 
 export const Home = () => {
-  const { user, logout } = useContext(authContext);
-
-  // se comprueba  si hay un usuario logueado, si no redirige al login
-  if(!user) return(<Redirect to="/login" />) 
-
-  // con la validacion pasada. podemos usar el nombre que viene en el user
-  const { name } = user;
-  console.log(!user || 'hola')
+  const { user, logout } = useContext(userContext);
+  const { nombre, islogged } = user;
+  console.log(user, 'usuario-home');
   const logoutHandler = () => {
+    // setUser({ nombre: '', uid: '', islogged: false });
     localStorage.clear('token');
-    logout(user);
+    logout(islogged);
+    // console.log(user);
   };
 
   return (
@@ -22,10 +19,10 @@ export const Home = () => {
         <h1 className="text-center mt-4">App test </h1>
         <div className="d-flex justify-content-between d-print-inline-block align-middle mt-5">
           <h4 className="text-center">
-            Bienvenido: <span className="text-primary"> {name}</span>
+            Bienvenido: <span className="text-primary"> {nombre} </span>
           </h4>
 
-          <button  onClick={logoutHandler} className="logout btn btn-danger">
+          <button onClick={logoutHandler} className="logout btn btn-danger">
             Logout
           </button>
         </div>
@@ -37,7 +34,7 @@ export const Home = () => {
         <br />
       </div>
 
-      
+      {!islogged ? <Redirect to="/login" /> : <Redirect to="/" />}
     </>
   );
 };

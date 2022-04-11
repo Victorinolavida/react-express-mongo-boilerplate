@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import {authContext} from '../state/state';
+import authContext from '../state/state';
 import '../styles/registro.css';
 // eslint-disable-next-line import/no-unresolved
 import { FormInput } from '../components/FormInput';
@@ -39,7 +39,7 @@ export const Login = () => {
         </form>
       </div>
 
-      {user ? <Redirect to="/" /> : <Redirect to="/login" />}
+      {user.islogged ? <Redirect to="/" /> : <Redirect to="/login" />}
     </>
   );
 };

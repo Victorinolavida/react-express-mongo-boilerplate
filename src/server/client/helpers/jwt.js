@@ -2,13 +2,13 @@ import jwt from 'jsonwebtoken';
 const privatekey = 'bigotes1234';
 
 export const decodeToken = token => {
-  let name, uuid;
+  let nombre, uid;
   jwt.verify(token, privatekey, (err, decode) => {
     if (err) return null;
 
-    name = decode.nombre;
-    uuid = decode.uid;
+    nombre = decode.nombre;
+    uid = decode.uid;
   });
 
-  return { name, uuid };
+  return { nombre, uid };
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
-import {authContext }from '../state/state';
+import authContext from '../state/state';
 import * as EmailValidator from 'email-validator';
 
 import '../styles/registro.css';
@@ -79,7 +79,7 @@ export const Register = () => {
             Registrarse
           </button>
         </form>
-        {user ? <Redirect to="/" /> : <Redirect to="/registro" />}
+        {user.islogged ? <Redirect to="/" /> : <Redirect to="/registro" />}
       </div>
     </>
   );
