@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import {authContext} from '../state/state';
+import {AuthContext} from '../state/state';
 
 export const Home = () => {
-  const { user, logout } = useContext(authContext);
+  const { user, logout } = useContext(AuthContext);
 
   // se comprueba  si hay un usuario logueado, si no redirige al login
   if(!user) return(<Redirect to="/login" />) 

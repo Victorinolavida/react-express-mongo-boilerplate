@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
-import {authContext }from '../state/state';
+import {AuthContext }from '../state/state';
 import * as EmailValidator from 'email-validator';
 
 import '../styles/registro.css';
@@ -9,7 +9,7 @@ import '../styles/registro.css';
 import { FormInput } from '../components/FormInput';
 
 export const Register = () => {
-  const { user, register } = useContext(authContext);
+  const { user, register } = useContext(AuthContext);
 
   const [dataForm, setDataForm] = useState({
     nombre: '',

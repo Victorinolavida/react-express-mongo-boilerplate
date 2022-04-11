@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import {authContext} from '../state/state';
+import {AuthContext} from '../state/state';
 import '../styles/registro.css';
 // eslint-disable-next-line import/no-unresolved
 import { FormInput } from '../components/FormInput';
@@ -10,7 +10,11 @@ export const Login = () => {
     email: 'test1@test.com',
     password: '123456'
   });
-  const { user, login } = useContext(authContext);
+
+  
+  const { user, login, test} = useContext(AuthContext);
+
+  const a = useContext(AuthContext);
 
   const onChance = e => {
     const { name, value } = e.target;
@@ -23,7 +27,8 @@ export const Login = () => {
   const submit = e => {
     e.preventDefault();
     const { email, password } = formData;
-    login(email, password);
+    login(email, password)
+
   };
 
   return (
