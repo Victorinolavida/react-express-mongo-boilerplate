@@ -10,7 +10,7 @@ const router = Router();
 router.post(
   '/registro',
   [
-    check('nombre', 'El nombre es obligatorio').notEmpty(),
+    check('name', 'El nombre es obligatorio').notEmpty(),
     check('email', 'El email es obligatorio').isEmail(),
     validarCampos
   ],
@@ -28,9 +28,9 @@ router.post(
 );
 
 router.get('/renew', validarJWT, async (req, res) => {
-  const nombre = req.nombre;
+  const name = req.name;
   const uid = req.uid;
-  const token = await generarJWT(uid, nombre);
+  const token = await generarJWT(uid, name);
   res.json({ token, ok: true });
 });
 

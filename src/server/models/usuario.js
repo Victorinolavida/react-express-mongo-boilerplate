@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
-const usuarioSchema = Schema({
-  nombre: {
+const userSchema = Schema({
+  name: {
     type: String,
     required: [true, 'el nombre es obligatorio']
   },
@@ -15,4 +15,4 @@ const usuarioSchema = Schema({
   }
 });
 
-export const Usuario = model('Usuario', usuarioSchema);
+export const User = model('User', userSchema);
