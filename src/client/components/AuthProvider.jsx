@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
   const login = (email = '', password = '') => {
     if (!email || !password) return;
 
-    fetch('http://localhost:3000/api/login', {
+    fetch('http://localhost:4000/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -29,7 +29,7 @@ export const AuthProvider = ({children}) => {
   };
 
   const register = (nombre, email, password1, password2) => {
-    fetch('http://localhost:3000/api/registro', {
+    fetch('http://localhost:4000/api/registro', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -52,7 +52,7 @@ export const AuthProvider = ({children}) => {
     const token = localStorage.getItem('token');
     // console.log(token, 'hola');
     if (token) {
-      fetch('http://localhost:3000/api/renew', {
+      fetch('http://localhost:4000/api/renew', {
         headers: {
           token
         }
