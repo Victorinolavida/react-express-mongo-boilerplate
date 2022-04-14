@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './components/AuthProvider';
 import { Login, Register, Home } from './pages';
-// import usuarioContexto from './state/state';
 
 export default function App() {
 

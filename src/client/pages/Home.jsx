@@ -10,7 +10,6 @@ export const Home = () => {
 
   // con la validacion pasada. podemos usar el nombre que viene en el user
   const { name } = user;
-  console.log(!user || 'hola')
   const logoutHandler = () => {
     localStorage.clear('token');
     logout(user);

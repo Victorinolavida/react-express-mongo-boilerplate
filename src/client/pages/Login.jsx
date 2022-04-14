@@ -12,7 +12,7 @@ export const Login = () => {
   });
 
   
-  const { user, login, test} = useContext(AuthContext);
+  const { user, login} = useContext(AuthContext);
 
   const a = useContext(AuthContext);
 

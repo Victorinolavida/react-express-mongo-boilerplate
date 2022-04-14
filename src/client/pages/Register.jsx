@@ -12,12 +12,13 @@ export const Register = () => {
   const { user, register } = useContext(AuthContext);
 
   const [dataForm, setDataForm] = useState({
-    nombre: '',
-    email: '',
-    password1: '',
-    password2: ''
+    name: 'test3',
+    email: 'test3@test.com',
+    password1: '123456',
+    password2: '123456'
   });
 
+  console.log(dataForm)
   const onChange = e => {
     const { name, value } = e.target;
     setDataForm(prev => ({
@@ -26,12 +27,14 @@ export const Register = () => {
     }));
   };
 
+  
   const registro = e => {
     e.preventDefault();
 
-    const { nombre, email, password1, password2 } = dataForm;
+    const { name, email, password1, password2 } = dataForm;
+    console.log(name,email,password1,password2)
 
-    if (nombre.length < 3) {
+    if (name.length < 3) {
       return console.error('el nombre debe tener mas de 3 caracteres');
     }
     if (!EmailValidator.validate(email)) {
@@ -45,14 +48,15 @@ export const Register = () => {
       return console.log('Las contraseñas no coinciden');
     }
 
-    register(nombre, email, password1, password2);
+    register(name, email, password1, password2);
   };
 
   return (
     <>
       <div className="container formulario-container">
         <form className="form-control formulario ">
-          <FormInput label="Nombre" id="nombre" placeholder="Juan Carlos" onChange={onChange} />
+          <FormInput label="Nombre" id="nombre" placeholder="Juan Carlos" onChange={onChange} 
+          />
           <FormInput
             label="Email"
             id="email"
@@ -79,7 +83,6 @@ export const Register = () => {
             Registrarse
           </button>
         </form>
-        {user ? <Redirect to="/" /> : <Redirect to="/registro" />}
       </div>
     </>
   );

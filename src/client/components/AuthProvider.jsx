@@ -8,6 +8,7 @@ export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
 
   const login = (email = '', password = '') => {
+    
     if (!email || !password) return;
 
     fetch('http://localhost:4000/api/login', {
@@ -28,22 +29,32 @@ export const AuthProvider = ({children}) => {
       .catch(console.log);
   };
 
-  const register = (nombre, email, password1, password2) => {
+  const register = (name, email, password1, password2) => {
+
+    const body = JSON.stringify({name,email,password1,password2})
+    console.log(JSON.stringify(body))
+
+
     fetch('http://localhost:4000/api/registro', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ nombre, email, password1, password2 })
+      body
     })
       .then(resp => resp.json())
       .then(data => {
+          if(data.msg) throw new Error(data.msg)
+
+
         localStorage.setItem('token', data.token);
         // si existe  token , pasa a setear el  token, pero antes lo decifra
         if (decodeToken) setUser({ ...decodeToken(data.token) });
-      });
+      }).catch(console.log);
   };
+
+  
   const logout = user => {
     !user || setUser(null);
   };
@@ -61,27 +72,15 @@ export const AuthProvider = ({children}) => {
         .then(data => {
           if (data.ok) {
             localStorage.setItem('token', data.token);
-          
             setUser({ ...decodeToken(token) });
-       
           }
         });
     }
   }, []);
 
-  const test =()=>{
-    console.log('HOLA')
-
-    setUser('hola')
-  }
-
-
-
   return (
-    <AuthContext.Provider value={{user,login,logout}}>
-        {
-          children
-        }
+    <AuthContext.Provider value={{user,login,logout,register}}>
+        {children}
     </AuthContext.Provider>
   )
 }
