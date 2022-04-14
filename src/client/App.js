@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './components/AuthProvider';
 import { Login, Register, Home } from './pages';
 
 export default function App() {
-
   return (
     <AuthProvider>
-
       <Router>
         <div>
           <Switch>
@@ -24,6 +22,5 @@ export default function App() {
         </div>
       </Router>
     </AuthProvider>
-
   );
 }
