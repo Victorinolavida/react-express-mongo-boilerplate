@@ -22,7 +22,7 @@ export const validarJWT = async (req = request, res = response, next) => {
     }
 
     req.uid = usuario._id;
-    req.nombre = usuario.nombre;
+    req.name = usuario.name;
 
     next();
   } catch (error) {

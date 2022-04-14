@@ -10,8 +10,15 @@ export const registro = async (req, res) => {
       msg: `El nombre debe ser mayor a tres caracteres`
     });
   }
+  let userInDb = await User.findOne({ name });
 
-  const userInDb = await User.findOne({ email });
+  if (userInDb) {
+    return res.status(401).json({
+      msg: `Ya existe un usuario con ese nombre `
+    });
+  }
+
+  userInDb = await User.findOne({ email });
 
   if (userInDb) {
     return res.status(401).json({
@@ -41,7 +48,7 @@ export const registro = async (req, res) => {
 
   await newUser.save();
 
-  const token = await generarJWT(newUser._id, newUser.nombre);
+  const token = await generarJWT(newUser._id, newUser.name);
   return res.json({ token });
 };
 
