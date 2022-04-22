@@ -12,13 +12,12 @@ export const Register = () => {
   const { user, register } = useContext(AuthContext);
 
   const [dataForm, setDataForm] = useState({
-    name: 'test3',
-    email: 'test3@test.com',
-    password1: '123456',
-    password2: '123456'
+    name: '',
+    email: '',
+    password1: '',
+    password2: ''
   });
 
-  console.log(dataForm)
   const onChange = e => {
     const { name, value } = e.target;
     setDataForm(prev => ({
@@ -32,7 +31,7 @@ export const Register = () => {
     e.preventDefault();
 
     const { name, email, password1, password2 } = dataForm;
-    console.log(name,email,password1,password2)
+  
 
     if (name.length < 3) {
       return console.error('el nombre debe tener mas de 3 caracteres');
@@ -55,7 +54,7 @@ export const Register = () => {
     <>
       <div className="container formulario-container">
         <form className="form-control formulario ">
-          <FormInput label="Nombre" id="nombre" placeholder="Juan Carlos" onChange={onChange} 
+          <FormInput label="Nombre" id="name" placeholder="Juan Carlos" onChange={onChange} 
           />
           <FormInput
             label="Email"
@@ -84,6 +83,8 @@ export const Register = () => {
           </button>
         </form>
       </div>
+
+      {user ? <Redirect to="/" /> : <Redirect to="/registro" />}
     </>
   );
 };

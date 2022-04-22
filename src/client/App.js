@@ -20,7 +20,9 @@ export default function App() {
             </Route>
           </Switch>
         </div>
+  
       </Router>
+
     </AuthProvider>
   );
 }

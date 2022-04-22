@@ -7,8 +7,8 @@ import { FormInput } from '../components/FormInput';
 
 export const Login = () => {
   const [formData, setFormData] = useState({
-    email: 'test1@test.com',
-    password: '123456'
+    email: '',
+    password: ''
   });
 
   

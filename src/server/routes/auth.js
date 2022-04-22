@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { login, registro } from '../controller/auth';
 import { generarJWT } from '../helpers/generarJWT';
-import { validarCampos } from '../middlewares/validar-campos';
-import { validarJWT } from '../middlewares/validar-jwt';
+import { validateMiddlewere } from '../middlewares/validate'
+import { validarJWT } from '../middlewares/ validateJwt';
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.post(
   [
     check('name', 'El nombre es obligatorio').notEmpty(),
     check('email', 'El email es obligatorio').isEmail(),
-    validarCampos
+    validateMiddlewere
   ],
   registro
 );
@@ -22,7 +22,7 @@ router.post(
   [
     check('email', 'El email es obligatorio').notEmpty(),
     check('password', 'El password es obligatorio').notEmpty(),
-    validarCampos
+    validateMiddlewere
   ],
   login
 );
