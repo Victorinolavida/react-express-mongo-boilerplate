@@ -1,33 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { ConnectedRouter } from 'connected-react-router';
-import { Switch, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import GuestRoute from './components/GuestRoute/GuestRoute';
-import CheckIfLoggedIn from './components/CheckIfLoggedIn/CheckIfLoggedIn';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { AuthProvider } from './components/AuthProvider';
+import { Login, Register, Home } from './pages';
 
-import LoginPage from './pages/Login/Login';
-import RegisterPage from './pages/Register/Register';
-import DashboardPage from './pages/Dashboard/Dashboard';
-import PageNotFound from './pages/NotFound/NotFound';
-
-const App = props => {
+export default function App() {
   return (
-    <ConnectedRouter history={props.history}>
-      <CheckIfLoggedIn>
-        <Switch>
-          <PrivateRoute exact path="/" component={DashboardPage} />
-          <GuestRoute exact path="/login" component={LoginPage} />
-          <GuestRoute exact path="/register" component={RegisterPage} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </CheckIfLoggedIn>
-    </ConnectedRouter>
+    <AuthProvider>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/registro">
+              <Register />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+  
+      </Router>
+
+    </AuthProvider>
   );
-};
-
-App.propTypes = {
-  history: PropTypes.object
-};
-
-export default App;
+}
